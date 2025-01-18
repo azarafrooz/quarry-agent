@@ -86,15 +86,15 @@ def demo():
          }
     )
 
-    agent = LocalAnthropicAgent(
-        {
-            "model_name_or_path": "claude-3-5-sonnet-20241022",
-            "path": "chroma_dir",
-            "n_results_documentation": 20,
-            "n_results_tools": 5,
-            "anthropic_api_key": os.getenv("ANTHROPIC_API_KEY"),
-        }
-    )
+   # agent = LocalAnthropicAgent(
+   #     {
+   #         "model_name_or_path": "claude-3-5-sonnet-20241022",
+   #         "path": "chroma_dir",
+   #         "n_results_documentation": 20,
+   #         "n_results_tools": 5,
+   #         "anthropic_api_key": os.getenv("ANTHROPIC_API_KEY"),
+   #     }
+   # )
 
     # agent = LocalOllamaAgent(
     #     {
