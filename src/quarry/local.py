@@ -76,15 +76,15 @@ def demo():
     #         "n_results": 10,
     #     }
     # )
-    # agent = LocalOpenAIAgent(
-    #     {
-    #         "model_name_or_path": "gpt-4o-mini",
-    #         "path": "chroma_dir",
-    #         "n_results_documentation": 20,
-    #         "n_results_tools": 5,
-    #         "openai_api_key": os.getenv("OPENAI_API_KEY"),
-    #     }
-    # )
+    agent = LocalOpenAIAgent(
+         {
+             "model_name_or_path": "gpt-4o-mini",
+             "path": "chroma_dir",
+             "n_results_documentation": 20,
+             "n_results_tools": 5,
+             "openai_api_key": os.getenv("OPENAI_API_KEY"),
+         }
+    )
 
     agent = LocalAnthropicAgent(
         {
@@ -177,12 +177,14 @@ Generate comprehensive insider threat analysis report
 
 Please list your sequential subgoals below:
 """
-    subgoals = agent.submit_prompt(
-        [agent.user_message(subgoal_prompt.format(goal=goal))], max_tokens = 128)
-    print(subgoals)
-    subgoals = subgoals.split("\n")
-    subgoals = [subgoal for subgoal in subgoals if subgoal]
-
+    # uncomment if you want to use curriculum type prompts. But you will be making |subgoals| times LLM calls. 
+    #subgoals = agent.submit_prompt(
+    #    [agent.user_message(subgoal_prompt.format(goal=goal))], max_tokens = 128)
+    #print(subgoals)
+    #subgoals = subgoals.split("\n")
+    #subgoals = [subgoal for subgoal in subgoals if subgoal]
+    
+    subgoals = [goal] # use just the goal for demo
     for subgoal in subgoals:
         print(subgoal)
         world_model = ReActWorldModel(agent=agent, goal=subgoal, max_iterations=7)
