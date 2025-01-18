@@ -137,7 +137,7 @@ def demo():
         pprint(tool)
         agent.update_global_env(tool)  # Loading saved tool:GeneratedTool in VectorDB.
 
-    goal = "Design an advanced security scanner engine for my mac"
+    goal = "What are top performing stocks today"
     subgoal_prompt = """
 Goal Decomposition - Data Exploration to Analysis
 ----------------------------------------------
@@ -187,17 +187,17 @@ Please list your sequential subgoals below:
     subgoals = [goal] # use just the goal for demo
     for subgoal in subgoals:
         print(subgoal)
-        world_model = ReActWorldModel(agent=agent, goal=subgoal, max_iterations=7)
+        world_model = ReActWorldModel(agent=agent, goal=subgoal, max_iterations=5)
         config = ReActConfig(
-            agent=agent, num_actions=3, max_new_tokens=512, temperature=0.3
+            agent=agent, num_actions=2, max_new_tokens=512, temperature=0.3
         )
 
         algorithm = MCTS(
-            depth_limit=7,
+            depth_limit=5,
             w_exp=math.sqrt(2),
             disable_tqdm=False,
             output_trace_in_each_iter=False,
-            n_iters=3,
+            n_iters=2,
             goal=subgoal,
         )
         reasoner_rap = Reasoner(
