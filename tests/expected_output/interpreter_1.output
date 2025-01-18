@@ -1,0 +1,30 @@
+In [ ]:
+x = 10
+In [ ]:
+y = 20
+In [ ]:
+x + y
+Out [ ]:
+30
+In [ ]:
+if x > 5:
+    print(f'x is greater than 5: {x}')
+x is greater than 5: 10
+In [ ]:
+try:
+    1 / 0
+except ZeroDivisionError:
+    print('Caught division by zero!')
+Caught division by zero!
+In [ ]:
+def pow(z):
+    return z ** 2
+In [ ]:
+for i in range(5):
+    if i == 3:
+        continue
+    print(pow(i))
+0
+1
+4
+16

@@ -1,0 +1,6 @@
+import pandas as pd
+
+
+def run_sql_sqlite(sql: str) -> pd.DataFrame | None:
+    """Executes a SQLite Query and returns results as a DataFrame or None when facing errors."""
+    return pd.read_sql_query(sql, conn)

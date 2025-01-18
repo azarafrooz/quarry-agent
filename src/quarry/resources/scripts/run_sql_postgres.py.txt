@@ -1,0 +1,3 @@
+def run_sql_postgres(sql: str, **kwargs) -> pd.DataFrame | None:
+    """Read PostgreSQL query into a pandas DataFrame"""
+    return pd.read_sql_query(sql, conn, **kwargs)

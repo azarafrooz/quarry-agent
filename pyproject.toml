@@ -1,0 +1,102 @@
+[project]
+name = "quarry"
+version = "0.1.0"
+description = "Simplifying LLM Agents with a SQL/Python-First Approach"
+readme = "README.md"
+authors = [{name = "Ari Azarafrooz", email = "ari.azarafrooz@gmail.com"}]
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=1.2.1",
+    "cloudpickle>=3.1.0",
+    "jsonref>=1.1.0",
+    "jupyter>=1.1.1",
+    "jupyter-client>=8.6.3",
+    "pandas>=2.2.3",
+    "pydantic>=2.10.4",
+    "pytest>=8.3.4",
+    "python-dotenv>=1.0.1",
+    "sqlalchemy>=2.0.36",
+    "sqlparse>=0.5.3",
+    "transformers>=4.47.1",
+    "types-requests>=2.32.0.20241016",
+    "psycopg>=3.2.3",
+    "psycopg[binary,pool]>=3.2.3",
+    "chromadb>=0.5.20",
+    "openai>=1.58.1",
+    "bm25s>=0.2.5",
+    "scikit-learn>=1.6.0",
+    "ollama>=0.4.5",
+    "crawl4ai>=0.4.246",
+    "anthropic>=0.42.0",
+    "streamlit>=1.41.1",
+    "sentence-transformers>=3.3.1",
+    "plotly>=5.24.1",
+    "umap>=0.1.1",
+    "numba>=0.60.0",
+    "umap-learn>=0.5.7",
+    "numpy>=2.0.2",
+]
+
+[tool.uv]
+python-preference = "only-managed"
+
+[project.optional-dependencies]
+chromadb = [
+    "chromadb>=0.5.20",
+]
+batteries = [
+    "bm25s>=0.2.5",
+    "rank-bm25>=0.2.2",
+    "scikit-learn>=1.6.0",
+]
+postgres = [
+    "psycopg[binary,pool]>=3.2.3",
+]
+openai = [
+    "openai>=1.58.1",
+]
+ollama = [
+    "ollama>=0.4.5",
+]
+crawl = [
+    "crawl4ai>=0.4.246",
+]
+
+anthropic = [
+    "anthropic>=0.42.0",
+]
+
+[project.scripts]
+demo = "quarry:demo"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/quarry"]
+
+[tool.hatch.metadata]
+include = [
+    "src/quarry/resources/react_prompt.md"
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+strict = false
+files = ["src/quarry/*.py","tests/*.py"]
+
+[tool.ruff]
+lint.ignore = ["F401"]  # disable checks for unused imports
+
+[tool.uv.sources]
+quarry = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "mypy>=1.14.0",
+    "pre-commit>=4.0.1",
+    "ruff>=0.8.4",
+]
+

@@ -1,0 +1,23 @@
+In [ ]:
+from rank_bm25 import BM25Okapi
+In [ ]:
+corpus = ['Hello there good man!', 'It is quite windy in London', 'How is the weather today?']
+In [ ]:
+tokenized_corpus = []
+In [ ]:
+for doc in corpus:
+    doc_tokens = doc.split()
+    tokenized_corpus.append(doc_tokens)
+In [ ]:
+print(tokenized_corpus)
+[['Hello', 'there', 'good', 'man!'], ['It', 'is', 'quite', 'windy', 'in', 'London'], ['How', 'is', 'the', 'weather', 'today?']]
+In [ ]:
+bm25 = BM25Okapi(tokenized_corpus)
+In [ ]:
+query = 'windy London'
+In [ ]:
+tokenized_query = query.split(' ')
+In [ ]:
+bm25.get_top_n(tokenized_query, corpus, n=1)
+Out [ ]:
+['It is quite windy in London']
