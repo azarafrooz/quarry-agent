@@ -189,7 +189,7 @@ Please list your sequential subgoals below:
         print(subgoal)
         world_model = ReActWorldModel(agent=agent, goal=subgoal, max_iterations=5)
         config = ReActConfig(
-            agent=agent, num_actions=2, max_new_tokens=512, temperature=0.3
+            agent=agent, num_actions=3, max_new_tokens=512, temperature=0.3
         )
 
         algorithm = MCTS(
