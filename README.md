@@ -169,6 +169,7 @@ sh quarry.sh
 Install from [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```commandline
+uv venv --python 3.12
 uv run demo
 ```
 
