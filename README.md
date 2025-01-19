@@ -196,7 +196,7 @@ Check out [Vanna AI](https://github.com/vanna-ai/vanna) for adapting Quarry to o
 - [Adobe Dynasaur](https://github.com/adobe-research/dynasaur)
 - [Self-Refine: Improving LLMs with Self-Feedback](https://arxiv.org/abs/2305.16291)
 
-##🌱 Future releases ##
+## 🌱 Future releases
 
 - Training codes for finetuning the base LLM models to reduce cost in MCTS search.
 
