@@ -9,6 +9,9 @@ from quarry.chroma_db import ChromaDB_VectorStore
 from quarry.resources.prompts import (
     extract_python_codes,
 )
+
+from quarry.crawl_service.crawl import GetTableDocumentation
+
 import pandas as pd
 
 from quarry.search import (
@@ -114,6 +117,19 @@ def demo():
         password=os.getenv("DB_PASSWORD"),
         port=os.getenv("DB_PORT"),
     )
+    
+    # add relevant documentation into vectorDB
+    table_names = agent.get_schema()["table_name"]
+    for table_name in table_names:
+        try:
+            get_table_documentation = GetTableDocumentation()
+            doc = get_table_documentation(table_name)
+            chunks = extract_code_blocks(doc)
+            for chunk in chunks:
+                print(chunk)
+                agent.add_documentation(chunk)
+        except Exception as e:
+            logging.warning("Could not crawl Table %s", table_name)
 
     def save_final_answer_as_csv(df: pd.DataFrame, file_name: str) -> None:
         print("Finished")
