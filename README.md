@@ -32,9 +32,6 @@ Start simple. Gradually increase task complexity to improve performance and reas
 
 This way you can use the memory of previous results as another table in Postgres/Steampipe
 
-### Include SQL examples in prompt 
-
-Share SQL examples in prompt or crawl your steampipe plugin documentation to extact examples of correct SQL to have better results. 
 
 ## 🏗️ Architecture Overview
 

@@ -80,24 +80,24 @@ def demo():
     #     }
     # )
     agent = LocalOpenAIAgent(
-         {
-             "model_name_or_path": "gpt-4o-mini",
-             "path": "chroma_dir",
-             "n_results_documentation": 20,
-             "n_results_tools": 5,
-             "openai_api_key": os.getenv("OPENAI_API_KEY"),
-         }
+        {
+            "model_name_or_path": "gpt-4o-mini",
+            "path": "chroma_dir",
+            "n_results_documentation": 20,
+            "n_results_tools": 5,
+            "openai_api_key": os.getenv("OPENAI_API_KEY"),
+        }
     )
 
-   # agent = LocalAnthropicAgent(
-   #     {
-   #         "model_name_or_path": "claude-3-5-sonnet-20241022",
-   #         "path": "chroma_dir",
-   #         "n_results_documentation": 20,
-   #         "n_results_tools": 5,
-   #         "anthropic_api_key": os.getenv("ANTHROPIC_API_KEY"),
-   #     }
-   # )
+    # agent = LocalAnthropicAgent(
+    #     {
+    #         "model_name_or_path": "claude-3-5-sonnet-20241022",
+    #         "path": "chroma_dir",
+    #         "n_results_documentation": 20,
+    #         "n_results_tools": 5,
+    #         "anthropic_api_key": os.getenv("ANTHROPIC_API_KEY"),
+    #     }
+    # )
 
     # agent = LocalOllamaAgent(
     #     {
@@ -117,7 +117,7 @@ def demo():
         password=os.getenv("DB_PASSWORD"),
         port=os.getenv("DB_PORT"),
     )
-    
+
     # add relevant documentation into vectorDB
     table_names = agent.get_schema()["table_name"]
     for table_name in table_names:
@@ -131,6 +131,7 @@ def demo():
         except Exception as e:
             logging.warning("Could not crawl Table %s", table_name)
 
+    # add tools directly
     def save_final_answer_as_csv(df: pd.DataFrame, file_name: str) -> None:
         print("Finished")
         df.to_csv(f"workdir/{file_name}", index=False)
@@ -193,14 +194,14 @@ Generate comprehensive insider threat analysis report
 
 Please list your sequential subgoals below:
 """
-    # uncomment if you want to use curriculum type prompts. But you will be making |subgoals| times LLM calls. 
-    #subgoals = agent.submit_prompt(
+    # uncomment if you want to use curriculum type prompts. But you will be making |subgoals| times LLM calls.
+    # subgoals = agent.submit_prompt(
     #    [agent.user_message(subgoal_prompt.format(goal=goal))], max_tokens = 128)
-    #print(subgoals)
-    #subgoals = subgoals.split("\n")
-    #subgoals = [subgoal for subgoal in subgoals if subgoal]
-    
-    subgoals = [goal] # use just the goal for demo
+    # print(subgoals)
+    # subgoals = subgoals.split("\n")
+    # subgoals = [subgoal for subgoal in subgoals if subgoal]
+
+    subgoals = [goal]  # use just the goal for demo
     for subgoal in subgoals:
         print(subgoal)
         world_model = ReActWorldModel(agent=agent, goal=subgoal, max_iterations=5)
